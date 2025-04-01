@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #2a09d2;
+    color: #2907d6;
+}
+input {
+    color: black !important;
+}
+
+input::placeholder {
+    color: gray !important; /* Ensure placeholder text is visible */
+}
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Player Analysis Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto text-center p-10">
+        <h1 class="text-3xl font-bold mb-5">Performance Analysis of {{ player }}</h1>
+
+        <!-- International Stats -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">Total International Cricket Stats</h2>
+            <table class="w-full border border-gray-700">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="border p-2">Category</th>
+                        <th class="border p-2">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">Matches</td>
+                        <td class="border p-2">{{ international_stats.matches }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">Innings</td>
+                        <td class="border p-2">{{ international_stats.innings }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">Runs</td>
+                        <td class="border p-2">{{ international_stats.runs }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">Highest Score</td>
+                        <td class="border p-2">{{ international_stats.highest_score }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">Average</td>
+                        <td class="border p-2">{{ international_stats.average }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">Strike Rate</td>
+                        <td class="border p-2">{{ international_stats.strike_rate }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">100s</td>
+                        <td class="border p-2">{{ international_stats["100s"] }}</td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">50s</td>
+                        <td class="border p-2">{{ international_stats["50s"] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Performance at Specific Ground -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">{{ player }}'s Performance at {{ ground }}</h2>
+            <table class="w-full border border-gray-700">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="border p-2">Format</th>
+                        <th class="border p-2">Matches</th>
+                        <th class="border p-2">Innings</th>
+                        <th class="border p-2">Runs</th>
+                        <th class="border p-2">Highest Score</th>
+                        <th class="border p-2">Average</th>
+                        <th class="border p-2">100s</th>
+                        <th class="border p-2">50s</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for format, stats in ground_stats.items() %}
+                    <tr class="bg-gray-600">
+                        <td class="border p-2">{{ format }}</td>
+                        <td class="border p-2">{{ stats.matches }}</td>
+                        <td class="border p-2">{{ stats.innings }}</td>
+                        <td class="border p-2">{{ stats.runs }}</td>
+                        <td class="border p-2">{{ stats.highest_score }}</td>
+                        <td class="border p-2">{{ stats.average }}</td>
+                        <td class="border p-2">{{ stats["100s"] }}</td>
+                        <td class="border p-2">{{ stats["50s"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Observations -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Key Observations</h2>
+            <ul class="list-disc text-left ml-6">
+                {% for observation in observations %}
+                <li>{{ observation }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
